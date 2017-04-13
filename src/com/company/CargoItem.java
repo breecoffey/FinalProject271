@@ -45,4 +45,9 @@ public class CargoItem {
     public void setValue(int value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "Item: " + name + ", Weight: " + ozWeight + ", Value: " + value + "\n";
+    }
 }

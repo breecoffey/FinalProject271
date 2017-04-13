@@ -24,4 +24,18 @@ public class CargoItemList {
 
     }
 
+    public CargoItem getItem(int index){
+        return itemList.get(index);
+    }
+
+    @Override
+    public String toString() {
+        String listOfItemsString ="";
+
+        for (CargoItem cI: itemList){
+            listOfItemsString += cI.toString();
+        }
+
+        return listOfItemsString;
+    }
 }

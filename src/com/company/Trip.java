@@ -14,5 +14,5 @@ public class Trip {
     }
     public double calculateCapacity (){
         return 0.0;
-    }
+    } //todo write note about this method
 }
