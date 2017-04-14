@@ -37,7 +37,57 @@ public class CargoListGenerator {
         //calls findSelectedItems
     }
 
-    // Returns the maximum value that can be put in a knapsack of capacity maxWeight
+    /**
+     * Returns the maximum value that can be put in a knapsack of capacity maxWeight
+     * dysnamic programming not recursive
+     * @param maxWeight
+     * @param numItems
+     * @return
+     */
+    public int calculateMaxValue(int maxWeight, int numItems){ //todo change to arraylist? /// change to private??
+
+
+        //NOTE: the index of a given item in MDarry is one greater than the index of item in cargo array
+
+        int indexOfAnItem, incrementWeight;
+        int K[][] = new int[numItems+1][maxWeight+1]; //[row][column] //todo proper name for K[][]
+
+        // Build table K[][] in bottom up manner
+        //finding solutions to different combinations of items and max weights. then storing them
+        for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++)
+        {//considering one by one all items
+            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++)
+            {// trying different poss weights scenarios
+                //todo should we throw an exception if there is nothing stored at indexOfAnItem-1?
+                if (indexOfAnItem==0 || incrementWeight==0) //if items or weight is zero, solution must be zero
+                    K[indexOfAnItem][incrementWeight] = 0;
+                else if (potentialItems.getItem(indexOfAnItem-1).getOzWeight() <= incrementWeight) // if the weight of a given item is less than the incrementWeight, enter this branch
+                    K[indexOfAnItem][incrementWeight] = max(potentialItems.getItem(indexOfAnItem-1).getValue() + K[indexOfAnItem-1][incrementWeight-potentialItems.getItem(indexOfAnItem-1).getOzWeight()],  K[indexOfAnItem-1][incrementWeight]);
+                    //compare the value of including the item verses not including it our optimal set (comparison is done with the max() method.
+                    // then stores the max value in the MDarray.
+                else //if weight goes over, don't include.
+                    K[indexOfAnItem][incrementWeight] = K[indexOfAnItem-1][incrementWeight];
+                //
+            }
+        }
+        possibleValueArray = K;
+        /*for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
+            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++) {
+                System.out.print(possibleValueArray[indexOfAnItem][incrementWeight] + ",");
+            }
+            System.out.println();
+        }*/
+
+        //todo  know for sure if the is all possible solutions bellow the weight limit or not.
+
+        //todo IDEA: let's call the wrapper method from here and return a  string with our information we want, instead of returning a int from this method.
+
+        return K[numItems][maxWeight];
+    }
+
+
+    //todo  know for sure if the is all possible solutions bellow the weight limit or not.
+    /*//Returns the maximum value that can be put in a knapsack of capacity maxWeight
     //dysnamic programming not recursive
     public int calculateMaxValue(int maxWeight, int weightArray[], int valueArray[], int numItems){ //todo change to arraylist? /// change to private??
 
@@ -61,23 +111,17 @@ public class CargoListGenerator {
                     // then stores the max value in the MDarray.
                 else //if weight goes over, don't include.
                     K[indexOfAnItem][incrementWeight] = K[indexOfAnItem-1][incrementWeight];
-                    //
             }
         }
         possibleValueArray = K;
-        /*for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
+        *//*for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
             for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++) {
                 System.out.print(possibleValueArray[indexOfAnItem][incrementWeight] + ",");
             }
             System.out.println();
-        }*/
-
-        //todo  know for sure if the is all possible solutions bellow the weight limit or not.
-
-        //todo IDEA: let's call the wrapper method from here and return a  string with our information we want, instead of returning a int from this method.
-
+        }
         return K[numItems][maxWeight];
-    }
+    }*/
 
     /**
      *
