@@ -12,24 +12,24 @@ public class Plane {
         return itemsToTake;
     }
 
-    public void setItemsToTake(CargoItemList itemsToTake) {
-        this.itemsToTake = itemsToTake;
+    public void setItemsToTake(CargoItemList itt) {
+        itemsToTake = itt;
     }
 
     public String getTypeOfPlane() {
         return typeOfPlane;
     }
 
-    public void setTypeOfPlane(String typeOfPlane) {
-        this.typeOfPlane = typeOfPlane;
+    public void setTypeOfPlane(String top) {
+        typeOfPlane = top;
     }
 
     public int getMaxOzWeight() {
         return maxOzWeight;
     }
 
-    public void setMaxOzWeight(int maxOzWeight) {
-        this.maxOzWeight = maxOzWeight;
+    public void setMaxOzWeight(int mow) {
+        maxOzWeight = mow;
     }
 
     @Override

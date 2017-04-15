@@ -18,37 +18,51 @@ public class CargoListGenerator {
         potentialItems = new CargoItemList();
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
+        // possibleValueArray set values to negitive one to initialize it?
     }
 
     //which of the two constructors bellow is needed?
     public CargoListGenerator(ArrayList<CargoItem> pI){
-        potentialItems = new CargoItemList(pI);
+        potentialItems = new CargoItemList(pI); //todo needs to be tested
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
     }
+
     public CargoListGenerator(CargoItemList pI){
         potentialItems = pI;
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
     }
 
-    public void generateList(){
+    /**
+     *
+     * Assures the the methods are called int he proper order.
+     * @return returned the value of the items stored on the optimal list with the give maxWeight
+     */
+    public int generateList(CargoItemList usersPotentialItems, int maxWeight){
+        //stub //todo test this method and methods associated with it
         //calls calculateMaxValue
-        //calls findSelectedItems
+        potentialItems = usersPotentialItems;
+        int maxVal = calculateMaxValue(maxWeight);
+
+        //calls findSelectedItems   //items must be stored in actualItems. ...
+        //return actualItems; //do I need to return ? or should I just use getter methods?
+        return maxVal;
     }
 
     /**
      * Returns the maximum value that can be put in a knapsack of capacity maxWeight
      * dysnamic programming not recursive
-     * @param maxWeight
-     * @param numItems
+     * @param maxWeight the maximum weight of cargo that can be stored in the airplane.
+     *
      * @return
+     * @pre there must be potential items stored in
      */
-    public int calculateMaxValue(int maxWeight, int numItems){ //todo change to arraylist? /// change to private??
-
-
+    public int calculateMaxValue(int maxWeight){// I think we don't need second param.
+        //todo change to arraylist? /// change to private??
         //NOTE: the index of a given item in MDarry is one greater than the index of item in cargo array
 
+        int numItems = potentialItems.getSize();
         int indexOfAnItem, incrementWeight;
         int K[][] = new int[numItems+1][maxWeight+1]; //[row][column] //todo proper name for K[][]
 
@@ -77,16 +91,100 @@ public class CargoListGenerator {
             }
             System.out.println();
         }*/
-
         //todo  know for sure if the is all possible solutions bellow the weight limit or not.
-
         //todo IDEA: let's call the wrapper method from here and return a  string with our information we want, instead of returning a int from this method.
-
         return K[numItems][maxWeight];
     }
 
+    /**
+     *
+     * @param row
+     * @param col
+     * @return
+     * @pre condition must have run the calculateMaxValue() with the proper values - or it won't be accurate return vlaue
+     */
+    private void findSelectedItems(int row, int col){//recurseive method.
+        //pesudocode for finding taken items, searches the MDarray for proper items
+        //if the value stored in the MDarray is 0,this a BASE CASE: if K[r][c] == 0
+        if (possibleValueArray[row][col] == 0){
+            // there are no more items to add.
+        }
+        //      deal with properly
+        //      return items you have added to the list, since there are no more items to add.
+        //Else If value one row above K[r-1], is == to the num stored in curr cell, k[r][c], then
+        else if (possibleValueArray[row][col] == possibleValueArray[row-1][col]){
+            //curr item is not included
+            findSelectedItems(row-1, col);
+        }
+        //      item is not included
+        //      find next cell to examin row = r-1 col = currCol
+        //      -- call recursive method again
+        else if (possibleValueArray[row][col] != possibleValueArray[row-1][col]){
+            actualItems.addCargoItemToList(potentialItems.getItem(row-1));//todo double check this (row-1)
+            findSelectedItems(row-1, col - potentialItems.getItem(row-1).getOzWeight());
+        }
+        //Else If value one row above is != to the curr number k[r][c], then
+        //      add item to list (item is included)
+        //      find the next cell to examine: next col = currCol - weightOfItemJustTook.  next row = currRow -1
 
-    //todo  know for sure if the is all possible solutions bellow the weight limit or not.
+        // wrapper method calls recursive method w/ k[n][w]
+        // w/in wrapper method , check that the selected items with a lower weight, and the value equal last value in the table
+        // this makes sure that the items add up to correct value. a way to double check our function
+        //
+
+        //return actualItems;
+    }
+
+    /**
+     * Wrapper method
+     * @param row
+     * @param col
+     * @return
+     */
+    public CargoItemList findSelectedItemsWrapper(int row, int col){
+        //todo I was thinking that this might be void instead, and that we don't need paramaters for this either. Because
+        // the first row and colum number will be bottom righthand corner, and maybe we can calculate that given the MDArray which we've stored in our attributes...?
+
+        return actualItems;
+
+    }
+
+    // A utility function that returns maximum of two integers
+    private int max(int first, int second){ //rename parameters to reflect what we intend the values to represent
+
+        return (first > second)? first : second; //todo more representative names
+    }
+
+    /**
+     * items must be stored in potential items and actual items.
+     * Returns which items are present in the potential items list but not in the actual items list.
+     * @return
+     */
+    private CargoItemList claculateItemsLeftBehind(){
+        //stub
+
+        //first must write a proper CargoItems equals method.
+        // store potential items and actual items in sets and find the differnce of the actual from the potential.
+        //store that difference in the itemsLeftBehind list.
+        //return it
+
+        return itemsLeftBehind;
+    }
+
+    //POSSIBLE INNER CLASS OF TRIP.
+
+
+
+
+
+
+
+
+
+
+
+}
+//todo  know for sure if the is all possible solutions bellow the weight limit or not.
     /*//Returns the maximum value that can be put in a knapsack of capacity maxWeight
     //dysnamic programming not recursive
     public int calculateMaxValue(int maxWeight, int weightArray[], int valueArray[], int numItems){ //todo change to arraylist? /// change to private??
@@ -122,64 +220,3 @@ public class CargoListGenerator {
         }
         return K[numItems][maxWeight];
     }*/
-
-    /**
-     *
-     * @param row
-     * @param col
-     * @return
-     * @pre condition must have run the calculateMaxValue() with the proper values - or it won't be accurate return vlaue
-     */
-    private void findSelectedItems(int row, int col){//recurseive method.
-        //pesudocode for finding taken items, searches the MDarray for proper items
-        //if the value stored in the MDarray is 0,this a BASE CASE: if K[r][c] == 0
-        if (possibleValueArray[row][col] == 0){
-            // there are no more items to add.
-        }
-        //      deal with properly
-        //      return items you have added to the list, since there are no more items to add.
-        //Else If value one row above K[r-1], is == to the num stored in curr cell, k[r][c], then
-        else if (possibleValueArray[row][col] == possibleValueArray[row-1][col]){
-            //curr item is not included
-            findSelectedItems(row-1, col);
-        }
-        //      item is not included
-        //      find next cell to examin row = r-1 col = currCol
-        //      -- call recursive method again
-        else if (possibleValueArray[row][col] != possibleValueArray[row-1][col]){
-            actualItems.addCargoItemToList(potentialItems.getItem(row-1));//todo double check this (row-1)
-            findSelectedItems(row-1, col - potentialItems.getItem(row-1).getOzWeight());
-        }
-        //Else If value one row above is != to the curr number k[r][c], then
-        //      add item to list (item is included)
-        //      find the next cell to examin: next col = currCol - weightOfItemJustTook.  next row = currRow -1
-
-        // wrapper method calls recursive method w/ k[n][w]
-        // w/in wrapper method , check that the selected items with a lower weight, and the value equal last value in the table
-        // this makes sure that the items add up to correct value. a way to double check our function
-        //
-
-        //return actualItems;
-    }
-
-    /**
-     * Wrapper method
-     * @param row
-     * @param col
-     * @return
-     */
-    public CargoItemList findSelectedItemsWrapper(int row, int col){
-        return actualItems;
-
-    }
-
-    // A utility function that returns maximum of two integers
-    private int max(int first, int second){ //rename parameters to reflect what we intend the values to represent
-
-        return (first > second)? first : second; //todo more representitive names
-    }
-
-    //POSSIBLE INNER CLASS OF TRIP.
-
-
-}

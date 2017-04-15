@@ -6,7 +6,7 @@ public class Main {
 	// write your code here
 
         //note: choice of user input or upload files
-        CargoListGenerator testGenerator = new CargoListGenerator();
+        /*CargoListGenerator testGenerator = new CargoListGenerator();
 
         int[] a = {1,3,4,5};
         int[] v = {1,4,5,7};
@@ -19,7 +19,7 @@ public class Main {
         int  W = 50;
         int n = val.length;
         System.out.println(testGenerator.calculateMaxValue(W, wt, val, n));
-
+*/
         //int maxWeight, int weightArray[], int valueArray[], int numItems
     }
     public static int calculateMaxValue(int maxWeight, int weightArray[], int valueArray[], int numItems){ //todo change to arraylist? /// change to private??

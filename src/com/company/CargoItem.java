@@ -46,6 +46,12 @@ public class CargoItem {
         this.value = value;
     }
 
+    public boolean equals(CargoItem ci){
+        //stub (untested code here)
+        return this.getOzWeight() == ci.getOzWeight() && this.getName().equalsIgnoreCase(ci.getName()) && this.getValue() == ci.getValue();
+    }
+
+
     @Override
     public String toString() {
         return "Item: " + name + ", Weight: " + ozWeight + ", Value: " + value + "\n";

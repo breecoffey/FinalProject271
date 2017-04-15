@@ -44,7 +44,7 @@ public class CargoListGeneratorTest {
         itemList.addCargoItemToList(thirdItem);
         itemList.addCargoItemToList(fourthItem);
         CargoListGenerator testGenerator2 = new CargoListGenerator(itemList);
-        assertEquals(9, testGenerator2.calculateMaxValue(7, 4));
+        assertEquals(9, testGenerator2.calculateMaxValue(7)); //size would be four, second parameter
 
 
         CargoItem aItem = new CargoItem(10, "aItem", 60);
@@ -55,8 +55,11 @@ public class CargoListGeneratorTest {
         anotherItemList.addCargoItemToList(bItem);
         anotherItemList.addCargoItemToList(cItem);
         CargoListGenerator testGenerator3 = new CargoListGenerator(anotherItemList);
-        assertEquals(220, testGenerator3.calculateMaxValue(50, 3));
+        assertEquals(220, testGenerator3.calculateMaxValue(50)); // size would be three second param
 
+        CargoListGenerator testG = new CargoListGenerator(anotherItemList);
+        assertEquals(280, testG.calculateMaxValue(1000)); //tests for if all items can fit, if the value will be calculated correctly
+        assertEquals(0, testG.calculateMaxValue(0)); //test to see if the max weight is zero, if no value can be stored on the plane
 
     }
 
