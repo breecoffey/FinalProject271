@@ -10,8 +10,24 @@ import static org.junit.Assert.*;
 public class CargoListGeneratorTest {
 
     @Test
-    public void generateList() throws Exception {
+    public void CargoListGenerator() throws Exception {
 
+    }
+    //I wrote this test. It fails. This is a problem lol. It has to do with the generateList method as a whole and i think it fails because findSelectedItems isn't working right.
+    @Test
+    public void generateList() throws Exception {
+        CargoItem firstItem = new CargoItem(1, "firstItem", 1);
+        CargoItem secondItem = new CargoItem(3, "secondItem", 4);
+        CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
+        CargoItem fourthItem = new CargoItem(5, "fourthItem", 7);
+        CargoItemList itemList = new CargoItemList();
+        itemList.addCargoItemToList(firstItem);
+        itemList.addCargoItemToList(secondItem);
+        itemList.addCargoItemToList(thirdItem);
+        itemList.addCargoItemToList(fourthItem);
+        CargoListGenerator testGen = new CargoListGenerator(itemList);
+        assertEquals("Item: secondItem, Weight: 3, Value: 4\n" +
+                "Item: thirdItem, Weight: 4, Value: 5\n", testGen.generateList(itemList,7));
     }
 
     @Test
@@ -64,8 +80,20 @@ public class CargoListGeneratorTest {
     }
 
     @Test
-    public void findSelectedItemsWrapper() throws Exception {
-
+    public void findSelectedItems() throws Exception {
+        CargoItem firstItem = new CargoItem(1, "firstItem", 1);
+        CargoItem secondItem = new CargoItem(3, "secondItem", 4);
+        CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
+        CargoItem fourthItem = new CargoItem(5, "fourthItem", 7);
+        CargoItemList itemList = new CargoItemList();
+        itemList.addCargoItemToList(firstItem);
+        itemList.addCargoItemToList(secondItem);
+        itemList.addCargoItemToList(thirdItem);
+        itemList.addCargoItemToList(fourthItem);
+        CargoListGenerator testGenerator3 = new CargoListGenerator(itemList);
+        testGenerator3.calculateMaxValue(7);
+        //findSelectedItems(5,8);
+        //assertEquals(9, testGenerator3.findSelectedItems(5, 8));
     }
 
 }

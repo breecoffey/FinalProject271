@@ -1,57 +1,66 @@
 package com.company;
-
+import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        /*
+        boolean moreItems = false;
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Enter 1 to input a file name. Enter 2 to input cargo by hand.");
+        int choice = kb.nextInt();
+        CargoItemList cargoItemList;
+        if (choice == 1) {
+            //todo file reader
+        } else if (choice == 2) {
+            do {
+                //user prompts
+                System.out.println("Please input the name of the cargo item.");
+                String name = kb.next();
+                System.out.println("Please input the weight (in oz) of the cargo item.");
+                int weight = kb.nextInt();
+                System.out.println("Please input the value of the cargo item.");
+                int val = kb.nextInt();
 
-        //note: choice of user input or upload files
-        /*CargoListGenerator testGenerator = new CargoListGenerator();
+                //constructor and addition to cargo item list.
+                CargoItem cargoItem = new CargoItem(weight, name, val);
+                cargoItemList = new CargoItemList();
+                cargoItemList.addCargoItemToList(cargoItem);
 
-        int[] a = {1,3,4,5};
-        int[] v = {1,4,5,7};
+                System.out.println("Enter 'Y' to add another item. Enter 'DONE' when you are done");
+                String addAnother = kb.next();
+                if (addAnother.equalsIgnoreCase("y")) {
+                    moreItems = true;
+                } else if (addAnother.equalsIgnoreCase("done")) {
+                    moreItems = false;
+                } 
+                else {
+                    System.out.println("Not a valid choice.");
+                    System.exit(0); //todo re-prompt?
+                }
+                } while (moreItems);
 
-        int returnValue = testGenerator.calculateMaxValue(7, a, v, 4);
-        System.out.println(returnValue);
+                System.out.println("Please enter the maximum weight capacity: ");
+                int maxWeight = kb.nextInt();
 
-        int val[] = new int[]{60, 100, 120};
-        int wt[] = new int[]{10, 20, 30};
-        int  W = 50;
-        int n = val.length;
-        System.out.println(testGenerator.calculateMaxValue(W, wt, val, n));
-*/
-        //int maxWeight, int weightArray[], int valueArray[], int numItems
-    }
-    public static int calculateMaxValue(int maxWeight, int weightArray[], int valueArray[], int numItems){ //todo change to arraylist? /// change to private??
-
-        int indexOfAnItem, incrementWeight;
-        int K[][] = new int[numItems+1][maxWeight+1]; //[row][column]
-
-        // Build table K[][] in bottom up manner
-        //finding solutions to different combinations of items and max weights. then storing them
-        for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++)
-        {//considering one by one all items
-            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++)
-            {// trying different poss weights scenarios
-                if (indexOfAnItem==0 || incrementWeight==0) //if items or weight is zero, solution must be zero
-                    K[indexOfAnItem][incrementWeight] = 0;
-                else if (weightArray[indexOfAnItem-1] <= incrementWeight) // if the weight of a given item is less than the incrementWeight, enter this branch
-                    K[indexOfAnItem][incrementWeight] = max(valueArray[indexOfAnItem-1] + K[indexOfAnItem-1][incrementWeight-weightArray[indexOfAnItem-1]],  K[indexOfAnItem-1][incrementWeight]);
-                    //compare the value of including the item verses not including it our optimal set (comparison is done with the max() method.
-                    // then stores the max value in the MDarray.
-                else //if weight goes over, don't include.
-                    K[indexOfAnItem][incrementWeight] = K[indexOfAnItem-1][incrementWeight];
-                //
-            }
+                CargoListGenerator genList = new CargoListGenerator(cargoItemList);
+                System.out.println("The maximum value from these items is: ");
+                System.out.println(genList.calculateMaxValue(maxWeight));
+                System.out.println("The items you should bring are: ");
+                System.out.println(genList.generateList(cargoItemList, maxWeight));
         }
-        //todo  know for sure if the is all possible solutions bellow the weight limit or not.
+        */
+        CargoItem firstItem = new CargoItem(1, "firstItem", 1);
+        CargoItem secondItem = new CargoItem(3, "secondItem", 4);
+        CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
+        CargoItem fourthItem = new CargoItem(5, "fourthItem", 7);
+        CargoItemList itemList = new CargoItemList();
+        itemList.addCargoItemToList(firstItem);
+        itemList.addCargoItemToList(secondItem);
+        itemList.addCargoItemToList(thirdItem);
+        itemList.addCargoItemToList(fourthItem);
+        CargoListGenerator testGenerator2 = new CargoListGenerator(itemList);
+        System.out.println(testGenerator2.calculateMaxValue(7)); //size would be four, second parameter
 
-        return K[numItems][maxWeight];
+
     }
-
-    public static int max(int first, int second){ //rename parameters to reflect what we intend the values to represent
-
-        return (first > second)? first : second; //todo more representitive names
-    }
-
 }

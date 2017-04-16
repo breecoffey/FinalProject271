@@ -26,6 +26,7 @@ public class Trip {
      * Airplane will be loaded with the maximum value of cargo that is below the max
      * @pre there must be a plane stored int the planeForTrip variable. Weight must be in Oz
      */
+   /*
     public void loadAirplane(CargoItemList possibleItems){
 
         int maxWeight = 10; //call calculateCapactiy
@@ -34,6 +35,7 @@ public class Trip {
         //planeForTrip.setItemsToTake(maxVal);
         //take returned list and store in plane
     }
+    */
 
     public double calculateCapacity (){
         return 0.0;
