@@ -40,7 +40,7 @@ public class CargoItemList {
     public String toString() {
         String listOfItemsString ="";
         for (CargoItem cI: itemList){
-            listOfItemsString += cI.toString();
+            listOfItemsString += "\t" + cI.toString();
         }
         return listOfItemsString;
     }

@@ -20,52 +20,62 @@ public class CargoListGenerator {
         // possibleValueArray set values to negitive one to initialize it?
     }
 
-    //which of the two constructors below is needed?
-    /*
-    public CargoListGenerator(ArrayList<CargoItem> pI){
-        potentialItems = new CargoItemList(pI); //todo needs to be tested
-        actualItems = new CargoItemList();
-        itemsLeftBehind = new CargoItemList();
-    }
-    */
-    //i think the one below will suffice (-bree)
-
     public CargoListGenerator(CargoItemList pI){
         potentialItems = pI;
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
     }
 
-    /**
+    /** Assures the the methods are called int the proper order.
      *
-     * Assures the the methods are called int he proper order.
      * @return returned the value of the items stored on the optimal list with the give maxWeight
      */
     public String generateList(CargoItemList usersPotentialItems, int maxWeight){
-        //stub //todo test this method and methods associated with it
-        //calls calculateMaxValue
+        //stub //test this method
+
         potentialItems = usersPotentialItems;
-        calculateMaxValue(maxWeight);
-        int row = potentialItems.getSize() + 1;
-        int col = maxWeight + 1;
+        fillValueMDArray(maxWeight);
+        int maxVal = calculateMaxValue(maxWeight);
+        int row = potentialItems.getSize(); //do we need to add one for these? I trust your judgement Bree, the plus one still throws me off haha.
+        int col = maxWeight;
         findSelectedItems(row, col);
-        return actualItems.toString();
-        //calls findSelectedItems   //items must be stored in actualItems. ...
-        //return actualItems; //do I need to return ? or should I just use getter methods?
+        calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now
+        return "Bring these items: \n" + actualItems.toString() +
+                "Total value of these items is: " + maxVal +
+                "\nLeave behind these items: \n" + itemsLeftBehind.toString(); //items must be stored in actual items at this point and calculateItemsLeftBehind must have been called.
+
     }
 
     /**
      * Returns the maximum value that can be put in a knapsack of capacity maxWeight
      * dynamic programming not recursive
      * @param maxWeight the maximum weight of cargo that can be stored in the airplane.
-     *
      * @return
-     * @pre there must be potential items stored in
+     * @pre there must be potential items stored in potentialItems list
      */
-    public String calculateMaxValue(int maxWeight){// I think we don't need second param.
-        //todo change to arraylist? /// change to private??
-        //NOTE: the index of a given item in MDarry is one greater than the index of item in cargo array
+    public int calculateMaxValue(int maxWeight){
+        // I decided to change it back to return an int because it's called "calculateMaxValue", and the string represents more information that that.
+        // I thought it might be better encapsulation if we kept the purpuse and return value more simple. I thought it might be easier to follow the flow
+        // I thought it might be easier to follow the flow for programmers who were unfamilar with the code.
+        // Also I broke this down into two functions for further encapsulation.
+        // Thank you so much though for figuring out how to call findSelectedItems from this function though!
+        // cause I know it was something we talked about when we last coded together :D
+        fillValueMDArray(maxWeight);
+        int numItems = potentialItems.getSize();
+        int maxVal = possibleValueArray[numItems][maxWeight]; //used to be K[numItems][maxWeight] instead
+        return maxVal; //todo  know for sure if the is all possible solutions bellow the weight limit or not, or just one
 
+        //findSelectedItems(numItems, maxWeight);
+        //return "The maximum value is: " + maxVal + "\nYou should bring: \n" + actualItems.toString();
+    }
+
+    /**
+     * Fills value MD array based on the maximum weight and list of cargo items stored in possibleItmes
+     * the largest value possible with the weight constraint will be stored inthe bottom right hand corner of the MDArray
+     * @param maxWeight
+     */
+    public void fillValueMDArray(int maxWeight){
+        //NOTE: the index of a given item in MDarry is one greater than the index of item in cargo array
         int numItems = potentialItems.getSize();
         int indexOfAnItem, incrementWeight;
         int K[][] = new int[numItems+1][maxWeight+1]; //[row][column] //todo proper name for K[][]
@@ -85,82 +95,50 @@ public class CargoListGenerator {
                     // then stores the max value in the MDarray.
                 else //if weight goes over, don't include.
                     K[indexOfAnItem][incrementWeight] = K[indexOfAnItem-1][incrementWeight];
-                //
             }
         }
         possibleValueArray = K;
-        /*for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
+
+        /* for testing :
+        for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
             for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++) {
                 System.out.print(possibleValueArray[indexOfAnItem][incrementWeight] + ",");
             }
             System.out.println();
-        }*/
-        //todo  know for sure if the is all possible solutions bellow the weight limit or not.
-        //todo IDEA: let's call the wrapper method from here and return a  string with our information we want, instead of returning a int from this method.
-        int maxVal = K[numItems][maxWeight];
-        findSelectedItems(numItems, maxWeight);
-        return "The maximum value is: " + maxVal + "\nYou should bring: \n" + actualItems.toString();
+        }
+        System.out.println();*/
+
     }
 
     /**
-     *
+     * Searches the MDarray for proper items
+     * todo Discuss how, When calling this for the first time, what the param's need to be so it's bottom right hand corner. Of MD array
      * @param row
      * @param col
      * @return
      * @pre condition must have run the calculateMaxValue() with the proper values - or it won't be accurate return vlaue
      */
 
-    public void findSelectedItems(int row, int col){//recursive method. //todo just wanted to highlight this. I changed to public so i could test it better.
-        //pseudocode for finding taken items, searches the MDarray for proper items
-        //if the value stored in the MDarray is 0,this a BASE CASE: if K[r][c] == 0
-        if (possibleValueArray[row][col] == 0){
+    public void findSelectedItems(int row, int col){//recursive method. //todo changed to public . (no problem!--Juliana)
+
+        if (possibleValueArray[row][col] == 0){//if the value stored in the MDarray is 0,this a BASE CASE: if K[r][c] == 0
             // there are no more items to add.
         }
-        //      deal with properly
-        //      return items you have added to the list, since there are no more items to add.
-        //Else If value one row above K[r-1], is == to the num stored in curr cell, k[r][c], then
-        else if (possibleValueArray[row][col] == possibleValueArray[row-1][col]){
-            //curr item is not included
-            findSelectedItems(row-1, col);
+        else if (possibleValueArray[row][col] == possibleValueArray[row-1][col]){//if value one row above K[r-1], is == to the num stored in curr cell, k[r][c]
+            findSelectedItems(row-1, col);//curr item is not included. move on; find next cell to examine-- call recursive method again
         }
-        //      item is not included
-        //      find next cell to examine row = r-1 col = currCol
-        //      -- call recursive method again
-        else if (possibleValueArray[row][col] != possibleValueArray[row-1][col]){
-            actualItems.addCargoItemToList(potentialItems.getItem(row-1));//todo double check this (row-1)
-            findSelectedItems(row-1, col - potentialItems.getItem(row-1).getOzWeight());
+        else if (possibleValueArray[row][col] != possibleValueArray[row-1][col]){//If value one row above is != to the curr number k[r][c]
+            actualItems.addCargoItemToList(potentialItems.getItem(row-1));// add item to list (item is included)//todo double check this (row-1)
+            findSelectedItems(row-1, col - potentialItems.getItem(row-1).getOzWeight());// examine next cell: next col = currCol - weightOfItemJustTook. next row = currRow -1
         }
-        //Else If value one row above is != to the curr number k[r][c], then
-        //      add item to list (item is included)
-        //      find the next cell to examine: next col = currCol - weightOfItemJustTook.  next row = currRow -1
 
-        // wrapper method calls recursive method w/ k[n][w]
-        // w/in wrapper method , check that the selected items with a lower weight, and the value equal last value in the table
+        // todo write another method to check that the selected items have a combined value equal last value in the table
+        //call from this function?
         // this makes sure that the items add up to correct value. a way to double check our function
-        //
-
-        //return actualItems;
     }
-
-    /**
-     * todo so i don't know if we need this anymore with the way i formatted the code? Take a look. Tell me what you're thinking.
-     * Wrapper method
-     * @param row
-     * @param col
-     * @return
-
-    public CargoItemList findSelectedItemsWrapper(int row, int col){
-        //todo I was thinking that this might be void instead, and that we don't need paramaters for this either. Because
-        // the first row and colum number will be bottom righthand corner, and maybe we can calculate that given the MDArray which we've stored in our attributes...?
-
-        return actualItems;
-
-    }
-    */
 
     // A utility function that returns maximum of two integers
     private int max(int first, int second){ //rename parameters to reflect what we intend the values to represent
-
         return (first > second)? first : second; //todo more representative names
     }
 
@@ -169,63 +147,27 @@ public class CargoListGenerator {
      * Returns which items are present in the potential items list but not in the actual items list.
      * @return
      */
-    private CargoItemList calculateItemsLeftBehind(){
+    private void calculateItemsLeftBehind(){
         //stub
-
         //first must write a proper CargoItems equals method.
         // store potential items and actual items in sets and find the differnce of the actual from the potential.
         //store that difference in the itemsLeftBehind list.
         //return it
 
-        return itemsLeftBehind;
+        //return itemsLeftBehind;
     }
 
     //POSSIBLE INNER CLASS OF TRIP.
 
 
+    public int[][] getPossibleValueArray(){
+        return possibleValueArray;
+    }
 
-
-
-
-
-
+    public CargoItemList getActualItems(){
+        return actualItems;
+    }
 
 
 
 }
-//todo  know for sure if the is all possible solutions bellow the weight limit or not.
-    /*//Returns the maximum value that can be put in a knapsack of capacity maxWeight
-    //dysnamic programming not recursive
-    public int calculateMaxValue(int maxWeight, int weightArray[], int valueArray[], int numItems){ //todo change to arraylist? /// change to private??
-
-
-        //NOTE: the index of a given item in MDarry is one greater than the index of item in cargo array
-
-        int indexOfAnItem, incrementWeight;
-        int K[][] = new int[numItems+1][maxWeight+1]; //[row][column]
-
-        // Build table K[][] in bottom up manner
-        //finding solutions to different combinations of items and max weights. then storing them
-        for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++)
-        {//considering one by one all items
-            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++)
-            {// trying different poss weights scenarios
-                if (indexOfAnItem==0 || incrementWeight==0) //if items or weight is zero, solution must be zero
-                    K[indexOfAnItem][incrementWeight] = 0;
-                else if (weightArray[indexOfAnItem-1] <= incrementWeight) // if the weight of a given item is less than the incrementWeight, enter this branch
-                    K[indexOfAnItem][incrementWeight] = max(valueArray[indexOfAnItem-1] + K[indexOfAnItem-1][incrementWeight-weightArray[indexOfAnItem-1]],  K[indexOfAnItem-1][incrementWeight]);
-                    //compare the value of including the item verses not including it our optimal set (comparison is done with the max() method.
-                    // then stores the max value in the MDarray.
-                else //if weight goes over, don't include.
-                    K[indexOfAnItem][incrementWeight] = K[indexOfAnItem-1][incrementWeight];
-            }
-        }
-        possibleValueArray = K;
-        *//*for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
-            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++) {
-                System.out.print(possibleValueArray[indexOfAnItem][incrementWeight] + ",");
-            }
-            System.out.println();
-        }
-        return K[numItems][maxWeight];
-    }*/

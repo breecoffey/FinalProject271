@@ -8,6 +8,18 @@ public class Plane {
     private String typeOfPlane;
     private int maxOzWeight;
 
+    public Plane(){
+        itemsToTake = new CargoItemList();
+        typeOfPlane = "";
+        maxOzWeight = 0;
+    }
+
+    public Plane(String top, int maxW){
+        typeOfPlane = top;
+        maxOzWeight = maxW;
+        itemsToTake = new CargoItemList();
+    }
+
     public CargoItemList getItemsToTake() {
         return itemsToTake;
     }
@@ -34,6 +46,7 @@ public class Plane {
 
     @Override
     public String toString() {
+        //todo make output pretty
         return "Plane{" +
                 "itemsToTake=" + itemsToTake +
                 ", typeOfPlane='" + typeOfPlane + '\'' +

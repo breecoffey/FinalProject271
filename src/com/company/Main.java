@@ -2,6 +2,17 @@ package com.company;
 import java.util.*;
 public class Main {
 
+    //todo List of features we might want to add to our program:
+    /** This is for both of use to use and refer to :D
+     * 1) we should through an exception if an item doesn't have a weight and a value.
+     *      we could maybe do this when the possibleItems list is created, cause it's fromt that moment on that both values are necessary.
+     * 2) at some point we should clean up the testclass so that it can create ojects at the begining of the class rather than within each function
+     *      (I probably should have done this when I first greated the testclass... sorry ! haha
+     * 3) Format values as money for print statments. Assure values are in dollars? cents? figure that out
+     * 4)
+     * 5)
+     */
+
     public static void main(String[] args) {
         /*
         boolean moreItems = false;
@@ -60,7 +71,7 @@ public class Main {
         itemList.addCargoItemToList(fourthItem);
         CargoListGenerator testGenerator2 = new CargoListGenerator(itemList);
         System.out.println(testGenerator2.calculateMaxValue(7)); //size would be four, second parameter
-
-
     }
+
+
 }

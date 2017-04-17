@@ -7,6 +7,7 @@ public class Trip {
     private Plane planeForTrip;
     private double distance;
     private CargoListGenerator tripsListGenerator;
+    private String itemsInPlaneAndTheirTotalValAndAbandondItems;
     //todo constructors
 
 
@@ -24,22 +25,20 @@ public class Trip {
 
     /**
      * Airplane will be loaded with the maximum value of cargo that is below the max
-     * @pre there must be a plane stored int the planeForTrip variable. Weight must be in Oz
+     * @pre there must be a plane stored int the planeForTrip variable. plane must have stored a max weight attribute (in Oz).
+     *
      */
-   /*
-    public void loadAirplane(CargoItemList possibleItems){
+    public String loadAirplane(CargoItemList possibleItems){
 
-        int maxWeight = 10; //call calculateCapactiy
-        int maxVal = tripsListGenerator.generateList(possibleItems, maxWeight);
-        //creates Cargo List Generator, calls it's methods.
-        //planeForTrip.setItemsToTake(maxVal);
-        //take returned list and store in plane
+        int maxWeight = planeForTrip.getMaxOzWeight();
+        //get string of what to bring, what to leave behind, and total value of what we're bringing
+        itemsInPlaneAndTheirTotalValAndAbandondItems = tripsListGenerator.generateList(possibleItems, maxWeight);
+        //grab the actual list generated, and stuff those things into the airplane
+        planeForTrip.setItemsToTake(tripsListGenerator.getActualItems()); //take cargo selected by cargoListGenerator object and store in plane
+
+        return "Airplane was loaded. \n" + itemsInPlaneAndTheirTotalValAndAbandondItems;
+
     }
-    */
-
-    public double calculateCapacity (){
-        return 0.0;
-    } //todo write note about this method- it's a symbolic one.... or we could just have a setter
 
     public Plane getPlaneForTrip() {
         return planeForTrip;
