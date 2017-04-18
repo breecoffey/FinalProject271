@@ -17,7 +17,7 @@ public class CargoListGenerator {
         potentialItems = new CargoItemList();
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
-        // possibleValueArray set values to negitive one to initialize it?
+        // possibleValueArray set values to negative one to initialize it?
     }
 
     public CargoListGenerator(CargoItemList pI){
@@ -26,7 +26,7 @@ public class CargoListGenerator {
         itemsLeftBehind = new CargoItemList();
     }
 
-    /** Assures the the methods are called int the proper order.
+    /** Assures the the methods are called in the proper order.
      *
      * @return returned the value of the items stored on the optimal list with the give maxWeight
      */
@@ -133,7 +133,7 @@ public class CargoListGenerator {
         }
 
         // todo write another method to check that the selected items have a combined value equal last value in the table
-        //call from this function?
+        // call from this function?
         // this makes sure that the items add up to correct value. a way to double check our function
     }
 

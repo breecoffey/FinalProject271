@@ -7,8 +7,7 @@ public class Trip {
     private Plane planeForTrip;
     private double distance;
     private CargoListGenerator tripsListGenerator;
-    private String itemsInPlaneAndTheirTotalValAndAbandondItems;
-    //todo constructors
+    private String itemsInPlaneAndTheirTotalValAndAbandonedItems;
 
 
     public Trip() {
@@ -32,11 +31,11 @@ public class Trip {
 
         int maxWeight = planeForTrip.getMaxOzWeight();
         //get string of what to bring, what to leave behind, and total value of what we're bringing
-        itemsInPlaneAndTheirTotalValAndAbandondItems = tripsListGenerator.generateList(possibleItems, maxWeight);
+        itemsInPlaneAndTheirTotalValAndAbandonedItems = tripsListGenerator.generateList(possibleItems, maxWeight);
         //grab the actual list generated, and stuff those things into the airplane
         planeForTrip.setItemsToTake(tripsListGenerator.getActualItems()); //take cargo selected by cargoListGenerator object and store in plane
 
-        return "Airplane was loaded. \n" + itemsInPlaneAndTheirTotalValAndAbandondItems;
+        return "Airplane was loaded. \n" + itemsInPlaneAndTheirTotalValAndAbandonedItems;
 
     }
 

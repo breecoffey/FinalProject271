@@ -1,5 +1,9 @@
 package com.company;
+import java.io.FileNotFoundException;
 import java.util.*;
+//import java.io.IOException;
+import java.io.File;
+//import java.io.BufferedReader;
 public class Main {
 
     //todo List of features we might want to add to our program:
@@ -13,15 +17,57 @@ public class Main {
      * 5)
      */
 
-    public static void main(String[] args) {
-        /*
-        boolean moreItems = false;
+    public static void main(String[] args){
+        //new scanner
         Scanner kb = new Scanner(System.in);
+
+        //new plane and trip
+        Plane p;
+        Trip t;
+        CargoItemList cargoItemList = new CargoItemList();
+
+        //prompt user for plane information
+        System.out.println("Please specify the type of plane you wish to fill: ");
+        String typeOfPlane = kb.nextLine();
+
+        System.out.println("Please specify the maximum weight capacity of the plane:");
+        int maxWeight = kb.nextInt();
+
+        //constructing the plane
+        p = new Plane(typeOfPlane, maxWeight);
+
+        //prompt user for trip information
+        System.out.println("Please specify the distance you are flying: ");
+        double dist = kb.nextDouble();
+
+        //constructing the trip
+        t = new Trip(p, dist);
+
+        //boolean for the do-while loop
+        boolean moreItems = false;
+
+
+        //loop for user input. 1 to use the file reader, 2 to enter items by hand.
         System.out.println("Enter 1 to input a file name. Enter 2 to input cargo by hand.");
         int choice = kb.nextInt();
-        CargoItemList cargoItemList;
         if (choice == 1) {
-            //todo file reader
+            System.out.println("Please input the file name: ");
+            String fileName = kb.next();
+
+            Scanner sc = null;
+            try {
+                sc = new Scanner(new File(fileName));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            while (sc.hasNextLine()){
+                String name = sc.nextLine();
+                int weight = sc.nextInt();
+                int val = sc.nextInt();
+                CargoItem cargoItem = new CargoItem(weight, name, val);
+                cargoItemList.addCargoItemToList(cargoItem);
+            }
         } else if (choice == 2) {
             do {
                 //user prompts
@@ -34,7 +80,6 @@ public class Main {
 
                 //constructor and addition to cargo item list.
                 CargoItem cargoItem = new CargoItem(weight, name, val);
-                cargoItemList = new CargoItemList();
                 cargoItemList.addCargoItemToList(cargoItem);
 
                 System.out.println("Enter 'Y' to add another item. Enter 'DONE' when you are done");
@@ -46,31 +91,13 @@ public class Main {
                 } 
                 else {
                     System.out.println("Not a valid choice.");
-                    System.exit(0); //todo re-prompt?
+                    System.exit(0); //todo re-prompt
                 }
                 } while (moreItems);
-
-                System.out.println("Please enter the maximum weight capacity: ");
-                int maxWeight = kb.nextInt();
-
-                CargoListGenerator genList = new CargoListGenerator(cargoItemList);
-                System.out.println("The maximum value from these items is: ");
-                System.out.println(genList.calculateMaxValue(maxWeight));
-                System.out.println("The items you should bring are: ");
-                System.out.println(genList.generateList(cargoItemList, maxWeight));
         }
-        */
-        CargoItem firstItem = new CargoItem(1, "firstItem", 1);
-        CargoItem secondItem = new CargoItem(3, "secondItem", 4);
-        CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
-        CargoItem fourthItem = new CargoItem(5, "fourthItem", 7);
-        CargoItemList itemList = new CargoItemList();
-        itemList.addCargoItemToList(firstItem);
-        itemList.addCargoItemToList(secondItem);
-        itemList.addCargoItemToList(thirdItem);
-        itemList.addCargoItemToList(fourthItem);
-        CargoListGenerator testGenerator2 = new CargoListGenerator(itemList);
-        System.out.println(testGenerator2.calculateMaxValue(7)); //size would be four, second parameter
+
+        System.out.println();
+        System.out.println(t.loadAirplane(cargoItemList));
     }
 
 
