@@ -104,7 +104,7 @@ public class CargoListGenerator {
         int row = potentialItems.getSize(); //do we need to add one for these? I trust your judgement Bree, the plus one still throws me off haha.
         int col = maxWeight;
         findSelectedItems(row, col);
-        //calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now todo add this back in!!!!!
+        calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now todo add this back in!!!!!
         return "Bring these items: \n" + actualItems.toString() +
                 "Total value of these items is: " + maxVal +
                 "\nLeave behind these items: \n" + itemsLeftBehind.toString(); //items must be stored in actual items at this point and calculateItemsLeftBehind must have been called.
@@ -207,12 +207,12 @@ public class CargoListGenerator {
     }
 
     /**
-     * Returns items to be abandoned. Compliles list of items that are present in the potential items list but not in the actual items list.
+     * Returns items to be abandoned. Compiles list of items that are present in the potential items list but not in the actual items list.
      * Items must be stored in potential items and actual items.
      * @return itemsLeftBehind a list of items left behind, items are not a part of the list of optimal items.
      * @pre Items are stored in potentialItems and actualItems list was generated with findSelectedItmes method.
      */
-    public CargoItemList calculateItemsLeftBehind(){
+    public void calculateItemsLeftBehind(){
 
         //stub
         HashSet<CargoItem> potentialItemsSet = new HashSet<>();
@@ -220,19 +220,19 @@ public class CargoListGenerator {
 
         potentialItemsSet.addAll(potentialItems.getItemList());// store potential items and actual items in sets
 
-        for (CargoItem nextItem: potentialItemsSet){
+       /* for (CargoItem nextItem: potentialItemsSet){
             System.out.print(nextItem.toString());
         }
-        System.out.println();
+        System.out.println();*/
 
-        System.out.println("these are the 'actual' items ");
+        //System.out.println("these are the 'actual' items ");
         actualItemSet.addAll(actualItems.getItemList());// store potential items and actual items in sets
-        for (CargoItem nextI: actualItemSet){
+        /*for (CargoItem nextI: actualItemSet){
             System.out.print(nextI);
         }
-        System.out.println();
+        System.out.println();*/
 
-        System.out.println("the difference ");
+        //System.out.println("the difference ");
         potentialItemsSet.removeAll(actualItemSet);// and find the differnce of the actual from the potential.
         //The difference of sets A, B is the set whose elements belong to A but not to B.
 
@@ -243,9 +243,9 @@ public class CargoListGenerator {
             itemsLeftBehind.addCargoItemToList(c);//store that difference in the itemsLeftBehind list.
         }
 
-        System.out.println("these are the items left behind ");
-        System.out.println(itemsLeftBehind.toString());
+        //System.out.println("these are the items left behind ");
+        //System.out.println(itemsLeftBehind.toString());
 
-        return itemsLeftBehind; // do i need a return?
+        //return itemsLeftBehind; // do i need a return?
     }
 }

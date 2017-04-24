@@ -91,18 +91,6 @@ public class CargoItem {
         return this.getOzWeight() == ci.getOzWeight() && this.getName().equalsIgnoreCase(ci.getName()) && this.getValue() == ci.getValue();
     }
 
-    /*
-     *Compare a given Student with current(this) object.
-     *If current Student id is greater than the received object,
-     *then current object is greater than the other.
-     */
-
-
-    public int compareTo(CargoItem otherCargoItem){ //todo delete this method
-
-
-        return 0;
-    }
     /**
      * Retrieves information about the attributes in this cargo item.
      * @return a string representation of the attributes of the item.
