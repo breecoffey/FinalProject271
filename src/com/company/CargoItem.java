@@ -98,11 +98,6 @@ public class CargoItem {
      */
 
 
-    public int compareTo(CargoItem otherCargoItem){ //todo delete this method
-
-
-        return 0;
-    }
     /**
      * Retrieves information about the attributes in this cargo item.
      * @return a string representation of the attributes of the item.

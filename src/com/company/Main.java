@@ -1,9 +1,7 @@
 package com.company;
 import java.io.FileNotFoundException;
 import java.util.*;
-//import java.io.IOException;
 import java.io.File;
-//import java.io.BufferedReader;
 public class Main {
 
     //todo List of features we might want to add to our program:
@@ -22,8 +20,8 @@ public class Main {
         Scanner kb = new Scanner(System.in);
 
         //new plane and trip
-        Plane p;
-        Trip t;
+        Plane plane;
+        Trip trip;
         CargoItemList cargoItemList = new CargoItemList();
 
         //prompt user for plane information
@@ -34,14 +32,14 @@ public class Main {
         int maxWeight = kb.nextInt();
 
         //constructing the plane
-        p = new Plane(typeOfPlane, maxWeight);
+        plane = new Plane(typeOfPlane, maxWeight);
 
         //prompt user for trip information
-        System.out.println("Please specify the distance you are flying: ");
+        System.out.println("Please specify the distance in miles you are flying: ");
         double dist = kb.nextDouble();
 
         //constructing the trip
-        t = new Trip(p, dist);
+        trip = new Trip(plane, dist);
 
         //boolean for the do-while loop
         boolean moreItems = false;
@@ -62,7 +60,7 @@ public class Main {
             }
 
             while (sc.hasNextLine()){
-                String name = sc.nextLine();
+                String name = sc.next();
                 int weight = sc.nextInt();
                 int val = sc.nextInt();
                 CargoItem cargoItem = new CargoItem(weight, name, val);
@@ -72,7 +70,8 @@ public class Main {
             do {
                 //user prompts
                 System.out.println("Please input the name of the cargo item.");
-                String name = kb.next();
+                kb.nextLine();
+                String name = kb.nextLine();
                 System.out.println("Please input the weight (in oz) of the cargo item.");
                 int weight = kb.nextInt();
                 System.out.println("Please input the value of the cargo item.");
@@ -97,6 +96,6 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println(t.loadAirplane(cargoItemList));
+        System.out.println(trip.loadAirplane(cargoItemList));
     }
 }
