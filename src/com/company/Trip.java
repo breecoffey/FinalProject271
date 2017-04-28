@@ -7,8 +7,6 @@ package com.company;
 public class Trip {
     /** planeForTrip is the aircraft object that will be making the cargo trip */
     private Plane planeForTrip;
-    /** The distance the aircraft will travel */
-    private double distance;
     /** the generator that puts together a list of ideal cargo items to transport on this trip (maximizes value, within weight limit) */
     private CargoListGenerator tripsListGenerator;
     /** A string with essential information about list of cargo Items, abandoned items and the plane for the trip*/
@@ -20,7 +18,6 @@ public class Trip {
      */
     public Trip() {
         planeForTrip = new Plane();
-        distance = 0.0;
         tripsListGenerator = new CargoListGenerator();
     }
 
@@ -28,11 +25,9 @@ public class Trip {
      * Constructor that initialize all the attributes of this Trip object.
      * Sets planeForTrip and distance to relevant parameters.
      * @param pft Plane object to be the plane for the trip
-     * @param d distance of the trip
      */
-    public Trip(Plane pft, double d) {
+    public Trip(Plane pft) {
         planeForTrip = pft;
-        distance = d;
         tripsListGenerator = new CargoListGenerator();
     }
 
@@ -49,8 +44,16 @@ public class Trip {
         //grab the actual list generated, and stuff those things into the airplane
         planeForTrip.setItemsToTake(tripsListGenerator.getActualItems()); //take cargo selected by cargoListGenerator object and store in plane
 
-        return "Airplane was loaded. \n" + cargoAndPlaneInfoString;
+        return "Airplane was loaded. \n\n" +
+                "Here are the details of your trip: \n\n" +
+                "Type of aircraft: " + planeForTrip.getTypeOfPlane() +
+                "\nWeight Limit: " + planeForTrip.getMaxOzWeight() + " ounces " +
+                "\n" + cargoAndPlaneInfoString;
 
+    }
+
+    public Plane getPlaneForTrip(){
+        return planeForTrip;
     }
 
 }

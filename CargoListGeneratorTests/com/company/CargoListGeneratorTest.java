@@ -48,6 +48,7 @@ public class CargoListGeneratorTest {
     }
     @Test
     public void fillValueMDArray() throws Exception {
+        //method to generally test the fillValueMDArray function
         int maxWeight = 7;
         itemList.addCargoItemToList(firstItem);
         itemList.addCargoItemToList(secondItem);
@@ -67,13 +68,10 @@ public class CargoListGeneratorTest {
         //todo add more tests
     }
 
-    @Test
-    public void CargoListGenerator() throws Exception {
-
-    }
 
     @Test
     public void generateList() throws Exception {
+        //method to generally test the generateList function
         itemList.addCargoItemToList(firstItem);
         itemList.addCargoItemToList(secondItem);
         itemList.addCargoItemToList(thirdItem);
@@ -83,7 +81,9 @@ public class CargoListGeneratorTest {
                 "\tItem: thirdItem, Weight: 4, Value: 5\n" +
                 "\tItem: secondItem, Weight: 3, Value: 4\n" +
                 "Total value of these items is: 9\n" +
-                "Leave behind these items: \n"; //todo - once leave items behind calculation is done this should be updated
+                "Leave behind these items: \n" +
+                "\tItem: fourthItem, Weight: 5, Value: 7\n" +
+                "\tItem: firstItem, Weight: 1, Value: 1\n"; //todo - once leave items behind calculation is done this should be updated
         assertEquals(expectedString, testGen.generateList(itemList, 7));
 
         anotherItemList.addCargoItemToList(aItem);
@@ -94,8 +94,9 @@ public class CargoListGeneratorTest {
                 "\tItem: cItem, Weight: 30, Value: 120\n" +
                 "\tItem: bItem, Weight: 20, Value: 100\n" +
                 "Total value of these items is: 220\n" +
-                "Leave behind these items: \n";
-        assertEquals(expectedString, testGenerator3.generateList(anotherItemList, 50));
+                "Leave behind these items: \n" +
+                "\tItem: aItem, Weight: 10, Value: 60\n";
+        assertEquals(expectedString, testGenerator3.generateList(anotherItemList, 50)); //todo uncomment this
 
         //assertEquals("Item: secondItem, Weight: 3, Value: 4\n" +
         //        "Item: thirdItem, Weight: 4, Value: 5\n", testGen.generateList(itemList,7)); temporarily did this so the test wouldn't fail
@@ -103,6 +104,7 @@ public class CargoListGeneratorTest {
 
     @Test
     public void calculateMaxValue() throws Exception {
+        ////method to generally test the calculateMaxValue function
         itemList.addCargoItemToList(firstItem);
         itemList.addCargoItemToList(secondItem);
         itemList.addCargoItemToList(thirdItem);
@@ -125,7 +127,7 @@ public class CargoListGeneratorTest {
 
     @Test
     public void findSelectedItems() throws Exception {
-
+        //method to generally test the findSelectedItems function
         itemList.addCargoItemToList(firstItem);
         itemList.addCargoItemToList(secondItem);
         itemList.addCargoItemToList(thirdItem);

@@ -214,38 +214,17 @@ public class CargoListGenerator {
      */
     public void calculateItemsLeftBehind(){
 
-        //stub
         HashSet<CargoItem> potentialItemsSet = new HashSet<>();
         HashSet<CargoItem> actualItemSet = new HashSet<>();
 
         potentialItemsSet.addAll(potentialItems.getItemList());// store potential items and actual items in sets
-
-        /*for (CargoItem nextItem: potentialItemsSet){
-            System.out.print(nextItem.toString());
-        }
-        System.out.println();*/
-
-//        System.out.println("these are the 'actual' items ");
         actualItemSet.addAll(actualItems.getItemList());// store potential items and actual items in sets
-        /*for (CargoItem nextI: actualItemSet){
-            System.out.print(nextI);
-        }
-        System.out.println();*/
+        potentialItemsSet.removeAll(actualItemSet);// and find the difference of the actual from the potential. //The difference of sets A, B is the set whose elements belong to A but not to B.
 
-        //System.out.println("the difference ");
-        potentialItemsSet.removeAll(actualItemSet);// and find the differnce of the actual from the potential.
-        //The difference of sets A, B is the set whose elements belong to A but not to B.
-
-        //make sure the the items left behind is starts empty. empty it.
-
+        //todo make sure the the itemsleftbehind list is empty now. if it isn't empty it.
         for (CargoItem c: potentialItemsSet){
-            //System.out.println(c.toString());
             itemsLeftBehind.addCargoItemToList(c);//store that difference in the itemsLeftBehind list.
         }
 
-        //System.out.println("these are the items left behind ");
-        //System.out.println(itemsLeftBehind.toString());
-
-        //return itemsLeftBehind; // do i need a return?
     }
 }

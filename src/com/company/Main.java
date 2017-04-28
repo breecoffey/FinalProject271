@@ -20,7 +20,7 @@ public class Main {
         Scanner kb = new Scanner(System.in);
 
         //new plane and trip
-        Plane plane;
+        Plane userPlane;
         Trip trip;
         CargoItemList cargoItemList = new CargoItemList();
 
@@ -32,14 +32,10 @@ public class Main {
         int maxWeight = kb.nextInt();
 
         //constructing the plane
-        plane = new Plane(typeOfPlane, maxWeight);
-
-        //prompt user for trip information
-        System.out.println("Please specify the distance in miles you are flying: ");
-        double dist = kb.nextDouble();
+        userPlane = new Plane(typeOfPlane, maxWeight);
 
         //constructing the trip
-        trip = new Trip(plane, dist);
+        trip = new Trip(userPlane);
 
         //boolean for the do-while loop
         boolean moreItems = false;
