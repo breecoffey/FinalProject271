@@ -220,12 +220,12 @@ public class CargoListGenerator {
 
         potentialItemsSet.addAll(potentialItems.getItemList());// store potential items and actual items in sets
 
-       /* for (CargoItem nextItem: potentialItemsSet){
+        /*for (CargoItem nextItem: potentialItemsSet){
             System.out.print(nextItem.toString());
         }
         System.out.println();*/
 
-        //System.out.println("these are the 'actual' items ");
+//        System.out.println("these are the 'actual' items ");
         actualItemSet.addAll(actualItems.getItemList());// store potential items and actual items in sets
         /*for (CargoItem nextI: actualItemSet){
             System.out.print(nextI);
