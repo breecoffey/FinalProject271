@@ -74,9 +74,24 @@ public class TripTest {
         expectedCargoItemList.addCargoItemToList(new CargoItem(2, "b", 2));
         assertEquals(expectedCargoItemList.toString(), aTrip.getPlaneForTrip().getItemsToTake().toString());
 
-        //test that proper optimal list stored when 1) no items are in the potential list of items  2)"All" items on potential list should be included
+        //E)
+        // test was moved into "all items left behind", e.g. no items on actual list
 
-        //test that proper optimal list stored when 1) Many items are on list (10) 2)All items on potential list should be included
+        // F
+        // test that proper optimal list stored when 1) Many items are on list (10) 2)All items on potential list should be included
+        CargoItem c1 = new CargoItem(2,"c1",2);
+        CargoItem c2 = new CargoItem(1,"c2",1);
+        CargoItem c3 = new CargoItem(3,"c3",2);
+        CargoItem c4 = new CargoItem(2,"c4",3);
+        CargoItem c5 = new CargoItem(4,"c5",4);
+        CargoItem c6 = new CargoItem(4,"c6",1);
+        CargoItem c7 = new CargoItem(3,"c7",1);
+        CargoItem c8 = new CargoItem(3,"c8",3);
+        Plane bPlane = new Plane("Airbus", 30);
+        Trip bTrip = new Trip(bPlane);
+        expectedCargoItemList.clearList();
+
+
 
         //test that proper optimal list stored when 1) only one item on potential list (100) 2)All items on potential list should be included
 
@@ -85,6 +100,8 @@ public class TripTest {
     @Test
     public void allItemsLeftBehind() throws Exception {//tests that all items are excluded from optimal list when appropriate
         //test that proper optimal list stored when 1) only one item on potential list 2)All items on potential list should be left behind
+        //
+        // test that proper optimal list stored when 1) no items are in the potential list of items
 
         //two identical items on list
 

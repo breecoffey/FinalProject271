@@ -58,7 +58,7 @@ public class CargoItemList {
         return itemList.size();
     }
 
-    //mutator methods
+    //mutater methods
 
     /**
      * Adds an additional CargoItem object to the itemList.
@@ -70,6 +70,10 @@ public class CargoItemList {
     }
 
     //Additional methods
+    public void clearList(){
+        itemList.clear();
+    }
+
     /**
      * Retrieves information about all the items stored in our collection of CargoItems.
      * @return a string representing all the CargoItems currently stored in our list .
