@@ -16,6 +16,7 @@ public class Trip {
     /**
      * Constructor that initialize all the attributes of this Trip object.
      */
+
     public Trip() {
         planeForTrip = new Plane();
         tripsListGenerator = new CargoListGenerator();
@@ -26,6 +27,7 @@ public class Trip {
      * Sets planeForTrip and distance to relevant parameters.
      * @param pft Plane object to be the plane for the trip
      */
+
     public Trip(Plane pft) {
         planeForTrip = pft;
         tripsListGenerator = new CargoListGenerator();
@@ -36,8 +38,8 @@ public class Trip {
      * @return a string stating that the airplane was properly loaded was returned.
      * @pre there must be a plane stored int the planeForTrip variable. plane must have stored a max weight attribute (in Oz).
      */
-    public String loadAirplane(CargoItemList possibleItems){
 
+    public String loadAirplane(CargoItemList possibleItems){
         int maxWeight = planeForTrip.getMaxOzWeight();
         //get string of what to bring, what to leave behind, and total value of what we're bringing
         cargoAndPlaneInfoString = tripsListGenerator.generateList(possibleItems, maxWeight);

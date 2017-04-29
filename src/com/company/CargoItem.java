@@ -99,6 +99,6 @@ public class CargoItem {
      */
     @Override
     public String toString() {
-        return "Item: " + name + ", Weight: " + ozWeight + ", Value: " + value + "\n";
+        return "Item: " + name + ", Weight: " + ozWeight + ", Value: $" + value + "\n";
     }
 }

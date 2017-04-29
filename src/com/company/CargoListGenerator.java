@@ -103,7 +103,7 @@ public class CargoListGenerator {
         findSelectedItems(row, col);
         calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now
         return "Bring these items: \n" + actualItems.toString() +
-                "Total value of these items is: " + maxVal +
+                "Total value of these items is: $" + maxVal +
                 "\nLeave behind these items: \n" + itemsLeftBehind.toString(); //items must be stored in actual items at this point and calculateItemsLeftBehind must have been called.
 
     }

@@ -17,14 +17,23 @@ public class Main {
         System.out.println("Please specify the type of plane you wish to fill: ");
         String typeOfPlane = kb.nextLine();
 
-        System.out.println("Please specify the maximum weight capacity of the plane:");
-        int maxWeight = kb.nextInt();
+        int maxWeight = 0;
+        while (maxWeight <= 0){
+            System.out.println("Please specify the maximum weight capacity of the plane:");
+            maxWeight = kb.nextInt();
+            if (maxWeight <= 0) {
+                System.out.println("Max weight cannot be 0 or less. Try again.");
+            }
+        }
 
         //constructing the plane
-        userPlane = new Plane(typeOfPlane, maxWeight);
 
-        //constructing the trip
-        trip = new Trip(userPlane);
+            userPlane = new Plane(typeOfPlane, maxWeight);
+            //constructing the trip
+            trip = new Trip(userPlane);
+
+
+
 
         //boolean for the do-while loop
         boolean moreItems = false;
@@ -44,17 +53,18 @@ public class Main {
                 e.printStackTrace();
             }
 
-            while (sc.hasNextLine()){
-                String name = sc.next();
+            while (sc.hasNextLine()) {
+                String name = sc.nextLine();
                 int weight = sc.nextInt();
                 int val = sc.nextInt();
                 try {
                     CargoItem cargoItem = new CargoItem(weight, name, val);
                     cargoItemList.addCargoItemToList(cargoItem);
-                }
-                catch (InvalidInputException e) {
+                } catch (InvalidInputException e) {
                     System.err.println("InvalidInputException: " + e.getMessage());
                 }
+                if (sc.hasNextLine()){
+                    sc.nextLine();}
 
             }
         } else if (choice == 2) {
@@ -85,7 +95,7 @@ public class Main {
                 } 
                 else {
                     System.out.println("Not a valid choice.");
-                    System.exit(0); //todo re-prompt
+                    System.exit(0);
                 }
                 } while (moreItems);
         }
