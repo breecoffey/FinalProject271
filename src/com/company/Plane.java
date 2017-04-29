@@ -80,11 +80,8 @@ public class Plane {
      */
     @Override
     public String toString() {
-        //todo make output pretty
-        return "Plane{" +
-                "itemsToTake=" + itemsToTake +
-                ", typeOfPlane='" + typeOfPlane + '\'' +
-                ", maxOzWeight=" + maxOzWeight +
-                '}';
+        return "Type of Plane: " + typeOfPlane  + "\n" +
+                "Maximum Weight: " + maxOzWeight + " ounces\n" +
+                "Cargo List: \n" + itemsToTake;
     }
 }

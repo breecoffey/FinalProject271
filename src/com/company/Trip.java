@@ -12,7 +12,7 @@ public class Trip {
     /** A string with essential information about list of cargo Items, abandoned items and the plane for the trip*/
     private String cargoAndPlaneInfoString;
 
-    //constructer
+    //constructors
     /**
      * Constructor that initialize all the attributes of this Trip object.
      */

@@ -26,7 +26,6 @@ public class CargoListGenerator {
         potentialItems = new CargoItemList();
         actualItems = new CargoItemList();
         itemsLeftBehind = new CargoItemList();
-        // TODO possibleValueArray set values to negative one to initialize it?
     }
 
     /**
@@ -86,7 +85,6 @@ public class CargoListGenerator {
         actualItems = aItems;
     }
 
-
     //Other Methods
     /** Assures the the methods to generate an optimal list are called in the proper order.
      * Decides which are the optimal items to bring or leave behind and generates string reflecting analysis.
@@ -103,7 +101,7 @@ public class CargoListGenerator {
         int row = potentialItems.getSize(); //do we need to add one for these? I trust your judgement Bree, the plus one still throws me off haha.
         int col = maxWeight;
         findSelectedItems(row, col);
-        calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now todo add this back in!!!!!
+        calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now
         return "Bring these items: \n" + actualItems.toString() +
                 "Total value of these items is: " + maxVal +
                 "\nLeave behind these items: \n" + itemsLeftBehind.toString(); //items must be stored in actual items at this point and calculateItemsLeftBehind must have been called.
@@ -121,7 +119,7 @@ public class CargoListGenerator {
         fillValueMDArray(maxWeight);
         int numItems = potentialItems.getSize();
         int maxVal = possibleValueArray[numItems][maxWeight]; //used to be K[numItems][maxWeight] instead
-        return maxVal; //todo  know for sure if the is all possible solutions bellow the weight limit or not, or just one
+        return maxVal;
 
         //findSelectedItems(numItems, maxWeight);
         //return "The maximum value is: " + maxVal + "\nYou should bring: \n" + actualItems.toString();
@@ -172,13 +170,13 @@ public class CargoListGenerator {
      * Recursively searches the filled multi-dimensional array for items that would be included in the optimal cargo list
      * The optimal cargo list is one which maximizes value while keeping their accumulative weight bellow the weight limit)s
      * Recursive method.
+     * When calling this for the first time, parameters should refer to the bottom right hand corner Of MD array
      * @param row row of the next cell to be evaluated  (within the multi-dimensional array)
      * @param col column of the next cell to be evaluated  (within the multi-dimensional array)
      * @pre  the fillValueMDArray method must have been called immediately before this. Proper list must be stored in potential items. actualItems list is empty!
      * @post the list of the optimal cargo items were stored in actualItems list
      */
     public void findSelectedItems(int row, int col){
-        //todo Discuss how, When calling this for the first time, what the param's need to be so it's bottom right hand corner. Of MD array
         if (possibleValueArray[row][col] == 0){//if the value stored in the MDarray is 0,this a BASE CASE: if K[r][c] == 0
             // there are no more items to add.
         }
@@ -186,13 +184,9 @@ public class CargoListGenerator {
             findSelectedItems(row-1, col);//curr item is not included. move on; find next cell to examine-- call recursive method again
         }
         else if (possibleValueArray[row][col] != possibleValueArray[row-1][col]){//If value one row above is != to the curr number k[r][c]
-            actualItems.addCargoItemToList(potentialItems.getItem(row-1));// add item to list (item is included)//todo double check this (row-1)
+            actualItems.addCargoItemToList(potentialItems.getItem(row-1));// add item to list (item is included)
             findSelectedItems(row-1, col - potentialItems.getItem(row-1).getOzWeight());// examine next cell: next col = currCol - weightOfItemJustTook. next row = currRow -1
         }
-
-        // todo write another method to check that the selected items have a combined value equal last value in the table
-        // call from this function?
-        // this makes sure that the items add up to correct value. a way to double check our function
     }
 
     /**
@@ -220,7 +214,7 @@ public class CargoListGenerator {
         actualItemSet.addAll(actualItems.getItemArrayList());// store potential items and actual items in sets
         potentialItemsSet.removeAll(actualItemSet);// and find the difference of the actual from the potential. //The difference of sets A, B is the set whose elements belong to A but not to B.
 
-        //todo make sure the the itemsleftbehind list is empty now. if it isn't empty it.
+        itemsLeftBehind.clearList();
         for (CargoItem c: potentialItemsSet){
             itemsLeftBehind.addCargoItemToList(c);//store that difference in the itemsLeftBehind list.
         }

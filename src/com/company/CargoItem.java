@@ -25,16 +25,17 @@ public class CargoItem {
 
     /**
      * Constructor that initialize all the variables and set the attributes to given values.
-     * @param ozWeight the weight of the cargo item in ounces.
-     * @param name is the name of the cargo item.
-     * @param value the price of an item in american dollars.
+     * @param ozW the weight of the cargo item in ounces.
+     * @param nam is the name of the cargo item.
+     * @param val the price of an item in american dollars.
      */
-    public CargoItem(int ozWeight, String name, int value) throws InvalidInputException{
-        this.ozWeight = ozWeight;
-        this.name = name;
-        this.value = value;
-        if (this.ozWeight == 0 || this.value == 0){
-            throw new InvalidInputException("Invalid item! Weight/value cannot be zero. " + this.name + " was not added to list");
+    public CargoItem(int ozW, String nam, int val) throws InvalidInputException{
+
+        ozWeight = ozW;
+        name = nam;
+        value = val;
+        if (ozWeight <= 0 || value <= 0 ){
+            throw new InvalidInputException("Invalid item! Weight/value cannot be zero or less than zero. " + this.name + " was not added to list");
         }
     }
 
@@ -89,8 +90,6 @@ public class CargoItem {
      * @return true if they are equal, false otherwise.
      */
     public boolean equals(CargoItem ci){
-        //stub (untested code here)
-
         return this.getOzWeight() == ci.getOzWeight() && this.getName().equalsIgnoreCase(ci.getName()) && this.getValue() == ci.getValue();
     }
 
