@@ -52,6 +52,10 @@ public class Plane {
         itemsToTake = itt;
     }
 
+    public void setMaxOzWeight(int newMaxW){
+        maxOzWeight = newMaxW;
+    }
+
     /**
      * Retrieves the kind of aircraft
      * @return a string representing the kind of plane was returned.

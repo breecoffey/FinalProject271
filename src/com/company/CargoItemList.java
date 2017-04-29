@@ -46,7 +46,7 @@ public class CargoItemList {
      * todo javadoc here
      * @return
      */
-    public ArrayList<CargoItem> getItemList() {
+    public ArrayList<CargoItem> getItemArrayList() {
         return itemList;
     }
 

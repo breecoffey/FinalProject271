@@ -1,6 +1,5 @@
 package com.company;
 import java.util.HashSet;
-import java.util.TreeSet;
 
 /**
  * Created by julianareider on 4/10/17.
@@ -217,8 +216,8 @@ public class CargoListGenerator {
         HashSet<CargoItem> potentialItemsSet = new HashSet<>();
         HashSet<CargoItem> actualItemSet = new HashSet<>();
 
-        potentialItemsSet.addAll(potentialItems.getItemList());// store potential items and actual items in sets
-        actualItemSet.addAll(actualItems.getItemList());// store potential items and actual items in sets
+        potentialItemsSet.addAll(potentialItems.getItemArrayList());// store potential items and actual items in sets
+        actualItemSet.addAll(actualItems.getItemArrayList());// store potential items and actual items in sets
         potentialItemsSet.removeAll(actualItemSet);// and find the difference of the actual from the potential. //The difference of sets A, B is the set whose elements belong to A but not to B.
 
         //todo make sure the the itemsleftbehind list is empty now. if it isn't empty it.

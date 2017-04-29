@@ -52,8 +52,12 @@ public class Trip {
 
     }
 
-    public Plane getPlaneForTrip(){
+    public Plane getPlaneForTrip(){//for testing purposes
         return planeForTrip;
+    }
+
+    public CargoListGenerator getCargoListGenerator(){ //for testing purposes only
+        return tripsListGenerator;
     }
 
 }
