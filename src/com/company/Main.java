@@ -59,8 +59,14 @@ public class Main {
                 String name = sc.next();
                 int weight = sc.nextInt();
                 int val = sc.nextInt();
-                CargoItem cargoItem = new CargoItem(weight, name, val);
-                cargoItemList.addCargoItemToList(cargoItem);
+                try {
+                    CargoItem cargoItem = new CargoItem(weight, name, val);
+                    cargoItemList.addCargoItemToList(cargoItem);
+                }
+                catch (InvalidInputException e) {
+                    System.err.println("InvalidInputException: " + e.getMessage());
+                }
+
             }
         } else if (choice == 2) {
             do {
@@ -70,13 +76,17 @@ public class Main {
                 String name = kb.nextLine();
                 System.out.println("Please input the weight (in oz) of the cargo item.");
                 int weight = kb.nextInt();
-                System.out.println("Please input the value of the cargo item.");
+                System.out.println("Please input the dollar value of the cargo item.");
                 int val = kb.nextInt();
 
                 //constructor and addition to cargo item list.
-                CargoItem cargoItem = new CargoItem(weight, name, val);
-                cargoItemList.addCargoItemToList(cargoItem);
-
+                try {
+                    CargoItem cargoItem = new CargoItem(weight, name, val);
+                    cargoItemList.addCargoItemToList(cargoItem);
+                }
+                catch (InvalidInputException e) {
+                    System.err.println("InvalidInputException: " + e.getMessage());
+                }
                 System.out.println("Enter 'Y' to add another item. Enter 'DONE' when you are done");
                 String addAnother = kb.next();
                 if (addAnother.equalsIgnoreCase("y")) {

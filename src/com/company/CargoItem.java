@@ -29,10 +29,13 @@ public class CargoItem {
      * @param name is the name of the cargo item.
      * @param value the price of an item in american dollars.
      */
-    public CargoItem(int ozWeight, String name, int value) {
+    public CargoItem(int ozWeight, String name, int value) throws InvalidInputException{
         this.ozWeight = ozWeight;
         this.name = name;
         this.value = value;
+        if (this.ozWeight == 0 || this.value == 0){
+            throw new InvalidInputException("Invalid item! Weight/value cannot be zero. " + this.name + " was not added to list");
+        }
     }
 
     //Setters and getters
@@ -90,13 +93,6 @@ public class CargoItem {
 
         return this.getOzWeight() == ci.getOzWeight() && this.getName().equalsIgnoreCase(ci.getName()) && this.getValue() == ci.getValue();
     }
-
-    /*
-     *Compare a given Student with current(this) object.
-     *If current Student id is greater than the received object,
-     *then current object is greater than the other.
-     */
-
 
     /**
      * Retrieves information about the attributes in this cargo item.
