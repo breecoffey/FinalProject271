@@ -1,0 +1,300 @@
+Item 1
+100
+13
+Item 2
+5
+20
+Item 3
+6
+50
+Item 4
+10
+34
+Item 5
+20
+67
+Item 6
+109
+28
+Item 7
+34
+75
+Item 8
+8
+17
+Item 9
+13
+35
+Item 10
+21
+32
+Item 11
+34
+75
+Item 12
+12
+20
+Item 13
+18
+19
+Item 14
+500
+450
+Item 15
+90
+95
+Item 16
+4
+51
+Item 17
+47
+85
+Item 18
+90
+100
+Item 19
+30
+325
+Item 20
+60
+801
+Item 21
+21
+871
+Item 22
+252
+29
+Item 23
+307
+30
+Item 24
+50
+507
+Item 25
+127
+170
+Item 26
+40
+30
+Item 27
+50
+33
+Item 28
+80
+87
+Item 29
+10
+5
+Item 30
+10
+20
+Item 31
+120
+120
+Item 32
+15
+152
+Item 33
+2
+5
+Item 34
+90
+992
+Item 35
+49
+39
+Item 36
+402
+30
+Item 37
+50
+33
+Item 38
+809
+87
+Item 39
+10
+543
+Item 40
+10
+203
+Item 41
+190
+10
+Item 42
+15
+145
+Item 43
+2
+54
+Item 44
+90
+99
+Item 45
+49
+391
+Item 46
+409
+30
+Item 47
+50
+33
+Item 48
+80
+871
+Item 49
+10
+5
+Item 50
+10
+20
+Item 51
+10
+10
+Item 52
+151
+15
+Item 53
+2
+5
+Item 54
+9
+9
+Item 55
+49
+39
+Item 56
+4
+3
+Item 57
+5
+3
+Item 58
+44
+87
+Item 59
+45
+5
+Item 60
+5
+20
+Item 61
+1
+6
+Item 62
+5
+5
+Item 63
+5
+87
+Item 64
+90
+99
+Item 65
+490
+39
+Item 66
+401
+30
+Item 67
+50
+335
+Item 68
+80
+65
+Item 69
+10
+5
+Item 70
+10
+28
+Item 71
+10
+8
+Item 72
+15
+1
+Item 73
+2
+50
+Item 74
+91
+99
+Item 75
+49
+39
+Item 76
+2
+30
+Item 77
+50
+3
+Item 78
+55
+87
+Item 79
+10
+5
+Item 80
+7
+20
+Item 81
+10
+190
+Item 82
+15
+75
+Item 83
+25
+5
+Item 84
+90
+111
+Item 85
+49
+98
+Item 86
+40
+31
+Item 87
+50
+3
+Item 88
+80
+8
+Item 89
+17
+5
+Item 90
+16
+20
+Item 91
+10
+87
+Item 92
+15
+67
+Item 93
+2
+5
+Item 94
+90
+99
+Item 95
+49
+39
+Item 96
+5
+5
+Item 97
+4
+4
+Item 98
+3
+3
+Item 99
+2
+2
+Item 100
+1
+1

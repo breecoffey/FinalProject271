@@ -27,12 +27,9 @@ public class Main {
         }
 
         //constructing the plane
-
             userPlane = new Plane(typeOfPlane, maxWeight);
             //constructing the trip
             trip = new Trip(userPlane);
-
-
 
 
         //boolean for the do-while loop
