@@ -51,13 +51,19 @@ public class CargoListGenerator {
 
     /**
      * Retrieves the optimal item list that has items that will maximize value while keeping the total weight of all itmes beneight weight constraint
-     * @pre todo there must be some pre conditions to this one
+     * @pre must be at least one item in the list
+     * @return actualItems the array list of items for the optimal solution
      */
+
     public CargoItemList getActualItems(){
         return actualItems;
     }
 
-    //todo add javadoc here
+    /**
+     * Retrieves the list of items not in the solution
+     * @return items the array list of items left out of the optimal solution
+     */
+
     public CargoItemList getItemsLeftBehind(){
         return itemsLeftBehind;
     }
@@ -69,6 +75,7 @@ public class CargoListGenerator {
      * Sets the list of potentialItems to the items in a given CargoItemList object
      * @param potentialItems the collection of cargo items to be represented by the potentialItem data attribute
      */
+
     public void setPotentialItems(CargoItemList potentialItems) {
         CargoItemList tempList = new CargoItemList();
         this.potentialItems = tempList;
@@ -79,6 +86,7 @@ public class CargoListGenerator {
      * Sets the list of actual items for optimal items list to given cargo items
      * @param aItems the collection of optimal items to be stored in the actualItems data attribute
      */
+
     public void setActualItems(CargoItemList aItems){
         CargoItemList tempList = new CargoItemList();
         actualItems = tempList;
@@ -98,13 +106,13 @@ public class CargoListGenerator {
         potentialItems = usersPotentialItems;
         fillValueMDArray(maxWeight);
         int maxVal = calculateMaxValue(maxWeight);
-        int row = potentialItems.getSize(); //do we need to add one for these? I trust your judgement Bree, the plus one still throws me off haha.
+        int row = potentialItems.getSize();
         int col = maxWeight;
         findSelectedItems(row, col);
-        calculateItemsLeftBehind(); //this is an unfinished function so this will be empty for now
+        calculateItemsLeftBehind();
         return "Bring these items: \n" + actualItems.toString() +
                 "Total value of these items is: $" + maxVal +
-                "\nLeave behind these items: \n" + itemsLeftBehind.toString(); //items must be stored in actual items at this point and calculateItemsLeftBehind must have been called.
+                "\nLeave behind these items: \n" + itemsLeftBehind.toString();
 
     }
 
@@ -155,15 +163,6 @@ public class CargoListGenerator {
             }
         }
         possibleValueArray = K;
-
-        /* for testing :
-        for (indexOfAnItem = 0; indexOfAnItem <= numItems; indexOfAnItem++) {//considering one by one all items
-            for (incrementWeight = 0; incrementWeight <= maxWeight; incrementWeight++) {
-                System.out.print(possibleValueArray[indexOfAnItem][incrementWeight] + ",");
-            }
-            System.out.println();
-        }
-        System.out.println();*/
     }
 
     /**

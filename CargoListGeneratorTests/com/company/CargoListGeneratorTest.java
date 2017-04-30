@@ -20,7 +20,7 @@ public class CargoListGeneratorTest {
      */
 
     @Test
-    public void calculateItemsLeftBehind() throws Exception {
+    public void testCalculateItemsLeftBehind() throws Exception {
         CargoItem firstItem = new CargoItem(1, "firstItem", 1);
         CargoItem secondItem = new CargoItem(3, "secondItem", 4);
         CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
@@ -59,7 +59,7 @@ public class CargoListGeneratorTest {
      * @throws Exception if assertEquals fails
      */
     @Test
-    public void fillValueMDArray() throws Exception{
+    public void testFillValueMDArray() throws Exception{
         //method to generally test the fillValueMDArray function
         CargoItem firstItem = new CargoItem(1, "firstItem", 1);
         CargoItem secondItem = new CargoItem(3, "secondItem", 4);
@@ -93,7 +93,7 @@ public class CargoListGeneratorTest {
      */
 
     @Test
-    public void generateList() throws Exception {
+    public void testGenerateList() throws Exception {
         CargoItemList itemList = new CargoItemList();
         CargoListGenerator testGen = new CargoListGenerator(itemList);
 
@@ -144,7 +144,7 @@ public class CargoListGeneratorTest {
      */
 
     @Test
-    public void calculateMaxValue() throws Exception {
+    public void testCalculateMaxValue() throws Exception {
 
         CargoItemList itemList = new CargoItemList();
         CargoListGenerator testGenerator2 = new CargoListGenerator(itemList);
@@ -163,7 +163,7 @@ public class CargoListGeneratorTest {
         anotherItemList.addCargoItemToList(bItem);
         anotherItemList.addCargoItemToList(cItem);
 
-        assertEquals(220, testGenerator3.calculateMaxValue(50)); // size would be three second param
+        assertEquals(220, testGenerator3.calculateMaxValue(50));
 
         CargoListGenerator testG = new CargoListGenerator(anotherItemList);
         assertEquals(280, testG.calculateMaxValue(1000)); //tests for if all items can fit, if the value will be calculated correctly
@@ -178,7 +178,7 @@ public class CargoListGeneratorTest {
      * @throws Exception if assertEquals fails
      */
     @Test
-    public void findSelectedItems() throws Exception {
+    public void testFindSelectedItems() throws Exception {
         CargoItem firstItem = new CargoItem(1, "firstItem", 1);
         CargoItem secondItem = new CargoItem(3, "secondItem", 4);
         CargoItem thirdItem = new CargoItem(4, "thirdItem", 5);
@@ -189,15 +189,11 @@ public class CargoListGeneratorTest {
         itemList.addCargoItemToList(secondItem);
         itemList.addCargoItemToList(thirdItem);
         itemList.addCargoItemToList(fourthItem);
-        //CargoListGenerator testGen3 = new CargoListGenerator(itemList);
-        testGen3.calculateMaxValue(7);
-        //findSelectedItems(5, 8);
-        //assertEquals(9, testGen3.findSelectedItems(5, 8));
-        //todo
 
-        //I think another additional way to test this method further is to
-        // check that the sum of the values of all the selected items
-        // have a combined value equal last value in the table
+        testGen3.calculateMaxValue(7);
+        testGen3.findSelectedItems(4, 7);
+        assertEquals("\tItem: thirdItem, Weight: 4, Value: $5\n" +
+                "\tItem: secondItem, Weight: 3, Value: $4\n", testGen3.getActualItems().toString());
 
     }
 
@@ -206,7 +202,7 @@ public class CargoListGeneratorTest {
      * @throws InvalidInputException
      */
     @Test (expected = InvalidInputException.class)
-    public void testsInvalidInputExcetption () throws InvalidInputException{
+    public void testsInvalidInputException () throws InvalidInputException{
         CargoItemList itemList = new CargoItemList();
         itemList.addCargoItemToList(new CargoItem(0, "firstItem", 1));
         itemList.addCargoItemToList(new CargoItem(4, "thirdItem", 0));

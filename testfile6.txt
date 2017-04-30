@@ -1,0 +1,300 @@
+Item A
+1000
+100
+Item B
+3000
+15
+Item C
+4000
+525
+Item D
+5
+7
+Item E
+1
+1
+Item F
+3000
+40
+Item G
+4500
+325
+Item H
+5400
+782
+Item I
+1950
+110
+Item J
+350
+425
+Item K
+425
+50
+Item L
+5000
+75
+Item M
+1320
+1120
+Item N
+300
+415
+Item O
+4
+5
+Item P
+5
+7
+Item Q
+1000
+100
+Item R
+3000
+15
+Item S
+4000
+525
+Item T
+5
+7
+Item U
+1
+1
+Item V
+3000
+40
+Item W
+4500
+325
+Item X
+5400
+782
+Item Y
+1950
+110
+Item Z
+350
+425
+Item A1
+425
+50
+Item B1
+5000
+75
+Item C1
+1320
+1120
+Item D1
+300
+415
+Item E1
+4
+5
+Item F1
+5
+7
+Item A2
+1000
+100
+Item B2
+3000
+15
+Item C2
+4000
+525
+Item D2
+5
+7
+Item E2
+1
+1
+Item F2
+3000
+40
+Item G2
+4500
+325
+Item H2
+5400
+782
+Item I2
+1950
+110
+Item J2
+350
+425
+Item K2
+425
+50
+Item L2
+5000
+75
+Item M2
+1320
+1120
+Item N2
+300
+415
+Item O2
+4
+5
+Item P2
+5
+7
+Item Q2
+1000
+100
+Item R2
+3000
+15
+Item S2
+4000
+525
+Item T2
+5
+7
+Item U2
+1
+1
+Item V2
+3000
+40
+Item W2
+4500
+325
+Item X2
+5400
+782
+Item Y2
+1950
+110
+Item Z2
+350
+425
+Item A1
+425
+50
+Item B1
+5000
+75
+Item C1
+1320
+1120
+Item D1
+300
+415
+Item E1
+4
+5
+Item F1
+5
+7
+Item A3
+1000
+100
+Item B3
+3000
+15
+Item C3
+4000
+525
+Item D3
+5
+7
+Item E3
+1
+1
+Item F3
+3000
+40
+Item G3
+4500
+325
+Item H3
+5400
+782
+Item I3
+1950
+110
+Item J3
+350
+425
+Item K3
+425
+50
+Item L3
+5000
+75
+Item M3
+1320
+1120
+Item N3
+300
+415
+Item O3
+4
+5
+Item P3
+5
+7
+Item Q3
+1000
+100
+Item R3
+3000
+15
+Item S3
+4000
+525
+Item T3
+5
+7
+Item U3
+1
+1
+Item V3
+3000
+40
+Item W3
+4500
+325
+Item X3
+5400
+782
+Item Y3
+1950
+110
+Item Z3
+350
+425
+Item R5
+3000
+15
+Item S5
+4000
+525
+Item T5
+5
+7
+Item U5
+1
+1
+Item V5
+3000
+40
+Item W5
+4500
+325
+Item X5
+5400
+782
+Item Y5
+1950
+110
+Item Z5
+350
+425
+Item A5
+100
+340
